@@ -1,4 +1,4 @@
-# hash:sha256:d1c73b849290675ccae29ae59350b751d213ad38fa47b75492241aa3b1f41f7e
+# hash:sha256:abf06873e35965c4e4b18747be678427db35bb943cb557b59cce23b6d2bee6ea
 FROM registry.acmecorp.codeocean.com/codeocean/jupyterlab:2.1.1-miniconda4.8.2-python3.8-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -6,8 +6,13 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common \
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys \
+        0x9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280 \
+        0xAD2323F17326AE31401037733E05EBFF05441C52 \
         E298A3A825C0D65DFD57CBB651716619E084DAB9 \
+    && add-apt-repository -y 'deb http://deb.codeocean.com/rstudio-server-bionic/ ubuntu main' \
+    && add-apt-repository -y 'deb http://deb.codeocean.com/shiny-server-trusty/ ubuntu main' \
     && add-apt-repository -y 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/' \
+    && add-apt-repository -y 'deb https://deb.nodesource.com/node_12.x bionic main' \
     && apt-get purge -y --autoremove software-properties-common \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -17,6 +22,7 @@ RUN apt-get update \
         libssl-dev=1.1.1-1ubuntu2.1~18.04.6 \
         pkg-config=0.29.1-0ubuntu2 \
         r-base=3.6.3-1bionic \
+        rstudio-server=1.2.5033 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN conda install -y \
@@ -24,4 +30,5 @@ RUN conda install -y \
     && conda clean -ya
 
 RUN pip install -U --no-cache-dir \
-    jupyter-rsession-proxy==1.2
+    jupyter-rsession-proxy==1.2 \
+    jupyter-server-proxy==1.5.0

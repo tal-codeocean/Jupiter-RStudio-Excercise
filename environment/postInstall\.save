@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-jupyter serverextension enable jupyter_server_proxy jupyter nbextension install --py jupyter_server_proxy jupyter nbextension enable --py 
-jupyter_server_proxy
-jupyter labextension install @jupyterlab/server-proxy	

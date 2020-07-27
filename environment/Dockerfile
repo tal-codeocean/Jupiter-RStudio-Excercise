@@ -1,4 +1,4 @@
-# hash:sha256:abf06873e35965c4e4b18747be678427db35bb943cb557b59cce23b6d2bee6ea
+# hash:sha256:fb1e01f00aef522cc47c9e68ba3177c87359e541bc8da97c8e6067da220236f6
 FROM registry.acmecorp.codeocean.com/codeocean/jupyterlab:2.1.1-miniconda4.8.2-python3.8-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -32,3 +32,6 @@ RUN conda install -y \
 RUN pip install -U --no-cache-dir \
     jupyter-rsession-proxy==1.2 \
     jupyter-server-proxy==1.5.0
+
+COPY postInstall /
+RUN /postInstall

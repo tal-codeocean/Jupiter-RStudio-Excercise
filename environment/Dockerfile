@@ -1,4 +1,4 @@
-# hash:sha256:fb1e01f00aef522cc47c9e68ba3177c87359e541bc8da97c8e6067da220236f6
+# hash:sha256:b31f50784104e65524f79de33e88ee51e963f2eb797f54d41c22eaa9cc5b59e0
 FROM registry.acmecorp.codeocean.com/codeocean/jupyterlab:2.1.1-miniconda4.8.2-python3.8-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -20,6 +20,7 @@ RUN apt-get update \
         gdebi-core=0.9.5.7+nmu2 \
         libgit2-dev=0.26.0+dfsg.1-1.1ubuntu0.2 \
         libssl-dev=1.1.1-1ubuntu2.1~18.04.6 \
+        nodejs=12.18.3-1nodesource1 \
         pkg-config=0.29.1-0ubuntu2 \
         r-base=3.6.3-1bionic \
         rstudio-server=1.2.5033 \
